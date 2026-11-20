@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171a1d">
+  <title>围桌 · 五人剧本杀</title>
+  <link rel="stylesheet" href="./style.css?v=20261120-night-western-flow8">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./"><span class="brand-mark">围</span><strong>围桌</strong><span class="brand-caption">五个人，一场故事。</span></a>
+    <nav class="endpoint-tabs" aria-label="设备页面预览"><button data-endpoint="computer" aria-pressed="true">电脑主机端</button><button data-endpoint="host" aria-pressed="false">主持端</button><button data-endpoint="player" aria-pressed="false">玩家端</button><button data-endpoint="test" aria-pressed="false">双玩家测试</button></nav>
+    <div class="header-tools"><span class="prototype-label">本机交互原型</span><button id="demo-toggle" class="quiet" aria-expanded="false" aria-controls="demo-panel">演示工具</button></div>
+  </header>
+  <main class="layout">
+
+    <section id="endpoint-computer" class="endpoint-page" aria-label="电脑主机端">
+      <section id="computer-welcome" class="computer-welcome"><div class="computer-story-intro"><span class="eyebrow">围桌 · 线下五人剧场</span><h1>雨夜旧馆</h1><p>一张底片，留下了谁的秘密？</p><div class="script-scene-slot computer-scene-slot" role="img" aria-label="雨夜旧照相馆主场景图预留"><span>雨夜旧照相馆 · 主场景预留</span></div><div id="computer-catalog"></div></div><div class="entry-code"><h2>手机扫码入场</h2><p>连接同一局域网，在手机选本、开房或加入朋友。</p></div></section><div id="computer-stage-mount">
+      <section class="theatre" aria-label="电脑公共舞台">
+        <div class="stage-top"><div><span id="stage-screen-label" class="eyebrow">公共舞台</span><h1 id="stage-title">等候入席</h1></div><div class="stage-top-status"><span id="stage-room-chip" class="stage-room-chip" hidden></span><span id="stage-state" class="stage-state">尚未开场</span></div></div>
+        <div id="stage-canvas"><div id="graphics-status" role="status">正在布置舞台…</div></div>
+        <aside class="computer-periphery" aria-label="电脑舞台信息面板">
+          <section id="computer-room" class="computer-room"></section>
+          <section id="computer-public" class="public-dashboard"></section>
+          <details class="host-panel computer-events-panel"><summary>电脑调试记录</summary><div id="computer-events"></div></details>
+        </aside>
+        <div class="stage-dock stage-dock-top stage-dock-open" aria-label="舞台顶部控制">
+          <button class="icon-button stage-dock-trigger" type="button" aria-label="展开或收起舞台工具" aria-expanded="true">☰</button>
+          <div class="stage-dock-tools">
+            <button class="icon-button" data-view="orientation" type="button" aria-label="横屏入席" title="横屏入席">↔</button>
+            <button data-action="music-toggle" class="icon-button" aria-label="播放音乐" aria-pressed="false">♫</button>
+            <label class="stage-music-rate" title="电脑端调整，全桌同步"><span>速度</span><select class="music-rate-select" aria-label="音乐播放速度"><option value="0.8">0.8×</option><option value="0.85">0.85×</option><option value="0.9" selected>0.9×</option><option value="0.95">0.95×</option><option value="1">1.0×</option></select></label>
+            <button class="icon-button stage-panel-button" data-stage-panel="invite" type="button" aria-label="扫码进入房间">▦</button>
+            <button class="icon-button stage-panel-button" data-stage-panel="settings" type="button" aria-label="设置" title="设置">⚙</button>
+          </div>
+        </div>
+        <div class="stage-dock stage-dock-bottom stage-dock-open" aria-label="舞台底部功能">
+          <button class="icon-button stage-dock-trigger" type="button" aria-label="展开或收起功能图标" aria-expanded="true">⌄</button>
+          <div class="stage-dock-tools">
+            <button class="icon-button" data-view="first" type="button" aria-label="第一人称" title="第一人称" hidden>◉</button>
+            <button class="icon-button" data-view="god" type="button" aria-label="上帝视角" title="上帝视角" hidden>⊙</button>
+            <button class="icon-button stage-panel-button" data-stage-panel="operation" type="button" aria-label="本轮操作">◉</button>
+            <button class="icon-button stage-panel-button" data-stage-panel="role" type="button" aria-label="角色卡">▤</button>
+            <button class="icon-button stage-panel-button" data-stage-panel="clues" type="button" aria-label="线索资料">⌕</button>
+            <button class="icon-button stage-panel-button" data-stage-panel="summary" type="button" aria-label="阶段总结">≡</button>
+            <button class="icon-button stage-panel-button" data-stage-panel="public" type="button" aria-label="全桌信息">◎</button>
+          </div>
+        </div>
+        <section class="stage-drawer" hidden aria-label="舞台功能面板">
+          <header><strong id="stage-drawer-title">本轮操作</strong><button class="icon-button stage-drawer-close" type="button" aria-label="关闭面板">×</button></header>
+          <div class="stage-drawer-content"></div>
+        </section>
+        <div class="view-controls" aria-label="舞台视角">
+          <button id="reset-view" class="small">视角复位</button>
+          <div class="stage-tools"><label class="music-rate-control">速度 <select id="music-rate" class="music-rate-select"><option value="0.8">0.8×</option><option value="0.85">0.85×</option><option value="0.9" selected>0.9×</option><option value="0.95">0.95×</option><option value="1">1.0×</option></select></label></div>
+        </div>
+        <button id="exit-immersive" hidden>退出沉浸</button>
+        <div class="stage-bottom"><div class="director-message"><span id="director-label">幕后主持</span><p id="stage-caption"></p></div></div>
+        <div id="public-overlay" class="public-overlay" hidden></div>
+      </section>
+      </div>
+    </section>
+    <section id="endpoint-host" class="endpoint-page host-workspace" aria-label="主持端" hidden>
+      <aside class="journey"><h2>这一场故事</h2><nav id="journey"></nav><div class="journey-bottom"><span class="live-dot"></span>五人木偶剧场<p>案件与身份均为测试占位。</p></div></aside>
+      <div class="host-main"><header class="host-page-heading"><div><span id="host-mode-label">AI 主持</span><h1 id="host-phase">等候开场</h1></div><div class="host-heading-tools"><button data-action="music-toggle" class="icon-button" aria-label="播放音乐" aria-pressed="false">♫</button><button data-action="music-library" class="music-library-button">曲库</button><button data-action="settings-placeholder" class="icon-button" aria-label="设置" title="设置">⚙</button><span id="host-running"></span></div></header>
+        <section class="host-panel"><div class="section-heading"><h2 id="host-controls-title">自动主持</h2><span id="host-next-condition"></span></div><div id="host-body"></div></section>
+        <section class="host-panel"><div class="section-heading"><h2>全桌进度</h2><span>公开操作状态</span></div><div id="host-progress"></div></section>
+        <section class="host-panel"><div class="section-heading"><h2>主持解释记录</h2></div><div id="host-public-messages"></div></section>
+        <section class="host-panel service-panel"><h2>主机服务</h2><div id="host-services"></div></section>
+      </div>
+    </section>
+    <section id="endpoint-player" class="endpoint-page" aria-label="玩家端" hidden>
+      <div id="player-personal" class="player-column"><section class="phone" aria-label="玩家手机实时画面">
+        <div class="phone-header"><h2 id="phone-name">围桌</h2><div class="phone-heading-tools"><div id="phone-room-code" class="phone-room-code" hidden></div><button data-action="music-toggle" class="icon-button" aria-label="播放音乐" aria-pressed="false">♫</button><button data-action="settings-placeholder" class="icon-button" aria-label="设置" title="设置">⚙</button><span id="phone-phase" hidden></span><span id="phone-connection" role="status" hidden></span><span id="phone-role-label" hidden></span></div></div>
+        <div id="player-director" class="player-director"></div>
+        <div id="player-scene" hidden><div id="player-stage-mount"></div></div>
+        <div id="clue-notice" class="clue-notice"></div>
+        <div id="phone-body" class="phone-body"></div>
+        <div class="player-scene-entry"><button id="enter-player-scene">进入竖屏入席</button><button id="leave-player-scene" hidden>回到全桌视角</button><span id="player-scene-name" hidden></span><label class="quality">画质 <select id="quality"><option value="high">高画质</option><option value="eco">省电</option></select></label></div>
+        <nav id="phone-tabs" class="phone-tabs"></nav>
+      </section></div>
+
+    </section>
+    <section id="endpoint-test" class="endpoint-page" aria-label="双玩家测试" hidden>
+      <div class="test-heading"><div><h1>双玩家流程测试</h1><p>两个独立设备身份，共用一个测试房间。</p></div><button id="reset-test-room">重置测试房间</button></div>
+      <details class="test-flow-helper"><summary>五人流程辅助</summary><p>两侧完成本人的操作后，可用这些按钮补齐全桌状态。</p><div class="actions"><button data-test-action="fill-roles">补齐其他玩家入席</button><button data-test-action="fill-ready">全员准备完成</button><button data-test-action="fill-consent">补齐录音意愿</button><button data-test-action="fill-intro">全员介绍完成</button><button data-test-action="skip-countdown">跳过收尾计时</button><button data-test-action="fill-confirm">全员结束确认</button><button data-test-action="fill-read">全员线索已读</button><button data-test-action="fill-votes" data-test-value="normal">补齐投票</button><button data-test-action="fill-votes" data-test-value="tie">补齐平票测试</button></div></details>
+      <div id="player-test-workspace" class="player-test-workspace"></div>
+    </section>
+  </main>
+  <aside id="demo-panel" class="demo-panel" aria-label="演示工具" hidden><div class="section-heading"><h2>演示工具</h2><button id="demo-close" class="quiet small">收起</button></div><p>局域网联机已接通。下方快捷操作仅供电脑本机调试，案件内容与 AI 回复仍为占位。</p><h3>模拟玩家设备</h3><div id="player-switch" class="player-switch"></div><h3>当前阶段快捷操作</h3><div id="demo-actions" class="actions"></div><label id="seat-control" hidden>观察座位 <select id="view-seat" aria-label="第一人称观察座位"><option value="0">沈知夏</option><option value="1">周启明</option><option value="2">林素琴</option><option value="3">许承安</option><option value="4">何映秋</option></select></label><button id="reset" class="quiet">重新开始</button><details class="coverage"><summary>原型范围与文字对比度</summary><p>房间状态由电脑保存，多设备实时同步，刷新自动恢复身份。三种相机在玩家端使用。录音、识别和真实 AI 尚未接入。</p><p id="contrast"></p></details></aside>
+  <dialog id="music-library-dialog" class="music-library-dialog"><div class="music-library-heading"><h2>音乐曲库 · 19 首</h2><button data-action="close-music-library" class="icon-button" aria-label="关闭曲库">×</button></div><p class="music-current-plan">等候入席循环：O Come O Come Emmanuel → the grotto → old doll</p><div id="music-library-content"></div></dialog>
+  <div id="toast" role="status" class="toast" hidden></div>
+  <script type="module" src="./app.js?v=20261120-night-western-flow8"></script>
+</body>
+</html>
